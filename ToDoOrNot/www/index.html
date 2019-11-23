@@ -1,0 +1,251 @@
+﻿<!DOCTYPE html>
+<!--This is a to-do-list app by Tommi Ralli 1800583-->
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="mobileui/style.css">
+    <meta name="format-detection" content="telephone=no">
+    <meta charset="utf-8">
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- Include meta tag to ensure proper rendering and touch zooming -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">-->
+    <!-- Include jQuery Mobile stylesheets -->
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+
+    <!-- Include the jQuery library -->
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
+    <script type="text/javascript" src="js/databaseHandler.js"></script>
+    <script type="text/javascript" src="js/userHandler.js"></script>
+    <script type="text/javascript" src="js/taskHandler.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+
+
+    <!-- Include the jQuery Mobile library -->
+    <!--<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>-->
+
+    <title>Login</title>
+    <style>
+        html, body {
+            height: 100%;
+            min-height: 100%;
+            margin: 0;
+            min-width: 250px;
+        }
+
+        .full-height {
+            height: 100%;
+        }
+
+        .page-container {
+            position: absolute;
+            height: 100%;
+            min-height: 100vh;
+        }
+
+        .content-wrap {
+            height: 100%;
+            padding-bottom: 2.5rem; /* Footer height */
+        }
+
+        /* Include the padding and border in an element's total width and height */
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Remove margins and padding from the list */
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+
+            /* Style the list items */
+            ul li {
+                cursor: pointer;
+                position: relative;
+                padding: 12px 8px 12px 40px;
+                list-style-type: none;
+                background: #eee;
+                font-size: 14px;
+                transition: 0.2s;
+                /* make the list items unselectable
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none; */
+            }
+
+                /* Set all odd list items to a different color (zebra-stripes) */
+                ul li:nth-child(odd) {
+                    background: #f9f9f9;
+                }
+
+                /* Darker background-color on hover */
+                ul li:hover {
+                    background: #ddd;
+                }
+
+                /* When clicked on, add a background color and strike out text */
+                ul li.checked {
+                    background: #8AAA74;
+                    color: black;
+                    text-decoration: line-through;
+                }
+
+                    /* Add a "checked" mark when clicked on */
+                    ul li.checked::before {
+                        content: '';
+                        position: absolute;
+                        border-color: #fff;
+                        border-style: solid;
+                        border-width: 0 2px 2px 0;
+                        top: 10px;
+                        left: 16px;
+                        transform: rotate(45deg);
+                        height: 15px;
+                        width: 7px;
+                    }
+
+        /* Style the close button */
+        .close {
+            position: absolute;
+            right: 0;
+            top: 0;
+            padding: 12px 16px 12px 16px;
+        }
+
+            .close:hover {
+                background-color: #f44336;
+                color: white;
+                border-radius: 50px;
+                transition: 2s;
+            }
+
+        /* Style the input */
+        .input {
+            padding: 10px;
+            border-radius: 50px;
+        }
+
+        .button:hover {
+            background-color: coral;
+            transition: 1s;
+        }
+    </style>
+
+    <script>
+        // Create a "close" button and append it to each list item
+        var myNodelist = document.getElementsByTagName("li");
+        var i;
+        for (i = 0; i < myNodelist.length; i++) {
+            var span = document.createElement("SPAN");
+            var txt = document.createTextNode("\u00D7");
+            span.className = "close";
+            span.appendChild(txt);
+            myNodelist[i].appendChild(span);
+        }
+
+        // Click on a close button to hide the current list item
+        var close = document.getElementsByClassName("close");
+        var i;
+        for (i = 0; i < close.length; i++) {
+            close[i].onclick = function () {
+                var div = this.parentElement;
+                div.style.display = "none";
+            }
+        }
+
+        // Add a "checked" symbol when clicking on a list item
+        function check() {
+            var list = document.querySelector("ul");
+            list.addEventListener('click', function (click) {
+                if (click.target.tagName === "LI") {
+                    click.target.classList.toggle("checked");
+                }
+            }, false);
+        }
+
+        // Create a new list item when clicking on the "Add" button
+        function newElement() {
+            var task = $("#myInput").val();
+            var li = document.createElement("li");
+            var a = document.getElementById("myInput").value;
+            var t = document.createTextNode(task);
+            li.appendChild(t);
+            if (task === '') {
+                alert("You must write something!");
+            } else {
+                document.getElementById("myUL").appendChild(li);
+                taskHandler.addTask(task);
+            }
+            document.getElementById("myInput").value = "";
+
+            var span = document.createElement("SPAN");
+            var txt = document.createTextNode("\u00D7");
+            span.className = "close";
+            span.appendChild(txt);
+            li.appendChild(span);
+
+            for (i = 0; i < close.length; i++) {
+                close[i].onclick = function () {
+                    var div = this.parentElement;
+                    div.style.display = "none";
+                }
+            }
+        }
+
+
+    </script>
+
+</head>
+<body>
+    <div id="page-container">
+        <div id="content-wrap" class="border" style="border-color:gainsboro;border-radius:25px;padding:15px;margin:15px;box-shadow: 10px 10px 100px 0px rgba(0,0,0,0.55);">
+            <p class="text-black text-strong" style="text-align:center;">To Do or not To Do?</p>
+
+            <!--Login credentials-->
+            <div class="list radius white no-border">
+                <div class="item align-left">
+                    <input type="text" id="loginEmail" placeholder="Enter your username" required />
+                </div>
+                <div class="item align-left">
+                    <input type="password" id="loginPassword" placeholder="Enter your password" required />
+                </div>
+            </div>
+            <!--Login button-->
+            <button class="radius full amber-400" style="color:white;box-shadow:3px 3px 10px 0px rgba(0,0,0,0.55)" onclick="login()">Login</button>
+            <!--Button that opens register menu-->
+            <button class="radius full amber-400" style="color:white;box-shadow:3px 3px 10px 0px rgba(0,0,0,0.55)" onclick="openMenu('registerMenu')">Register</button>
+            <!--Register menu-->
+            <div class="menu menu-left white-opacity-90" id="registerMenu">
+                <div class="list no-border">
+                    <div class="item amber">
+                        <h1>Register new account</h1>
+                    </div>
+                    <!--Register menu fields-->
+                    <div class="item">
+                        <input type="email" placeholder="Username" id="txtEmail" />
+                    </div>
+
+                    <div class="item">
+                        <input type="password" placeholder="Password" id="txtPassword" />
+                    </div>
+
+                    <div class="item">
+                        <button class="full radius amber" onclick="addUser()">Register</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="mobileui/mobileui.js"></script>
+
+
+</body>
+</html>

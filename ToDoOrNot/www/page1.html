@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<!--This is a to-do-list app by Tommi Ralli 1800583-->
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="mobileui/style.css">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <meta name="format-detection" content="telephone=no">
+    <meta charset="utf-8">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script type="text/javascript" src="js/taskHandler.js"></script>
+</head>
+<body>
+    <div id="page-container" class="page">
+        <div id="content-wrap">
+            <!--Header-->
+            <div class="header amber tab" style="position:sticky;">
+                <button class="glyphicon glyphicon-log-out" onclick="logout()">logout</button>
+                <button class="glyphicon glyphicon-info-sign" onclick="openTab('tabWelcome')">Info</button>
+                <button class="glyphicon glyphicon-tasks" onclick="openTab('tabHome')">LIST</button>
+                <button class="glyphicon glyphicon-question-sign" onclick="openTab('tabAbout')">About</button>
+            </div>
+
+            <!--Tab Welcome-->
+            <div class="tab-content padding margin" style="overflow:auto;" id="tabWelcome">
+                <h1 class="text-strong align-center" style="font-size:16px;color:black;">Welcome to What did I forget?-app.</h1>
+                <p class="margin">This is an easy and simple to use To-do-list.</p>
+                <p class="has-footer margin-bottom" style="font-size:10px;">
+                    Benefits of To Do Lists are various. <br /><br /><strong>Creates order</strong><br />
+                    A to do list is an orderly way to organize how to do the things you want to do. Projects and plans get broken down into bite size chunks that are doable. A to do list not only creates order but also gives you a strategy for getting things done.
+
+                    <br /><br /><strong>Prioritize</strong><br />
+                    Manage tasks effectively. You can see all of the items at a glance and prioritize what most needs to be done according to timelines and importance.
+
+                    <br /><br /><strong>
+                        Accountability
+                    </strong><br />
+                    The act of writing it down in itself holds you accountable to get it done. Once you write it down, you have given it life and now are creating a plan to accomplish the goals you would like to see completed.  You are now accountable to you.
+
+                    <br /><br /><strong>
+                        Rescheduling and organizing your time.
+                    </strong><br />
+                    If you finish something quickly, a meeting gets cancelled or you otherwise find yourself with extra time, you can quickly see where the best way to spend your time is quickly to get back on track.
+
+                    If something comes up unexpectedly and takes precedence in importance, when you are finished you can quickly see and continue with your previous plans.
+                    <br /> <br /><strong>
+                        Feeling Productive
+                    </strong><br />
+                    It is a great feeling to cross items off your list. This gives you back control. It also gives you a positive productive feeling and this alone is worth keeping lists for.
+                    <br /> <br /><strong>
+                        Helps you to Delegate
+                    </strong><br />
+
+                    To do lists help you to delegate work. If you see the list is too long, you can find others to help you get things done, whether it is asking family members for a hand or hiring a job out.
+                    <br /> <br /><strong>
+                        Relieves Stress
+                    </strong><br />
+                    As you see work getting done and that you are moving forward efficiently, it allows you to relax more. Work is getting done and so you can take a well-deserved break. Schedule it in if you need to. I am quite good at just taking periodic breaks whether scheduled or not.
+
+
+                </p>
+
+
+            </div>
+            <!--Tab Home-->
+            <div style="overflow: auto;" class="tab-content active padding margin" id="tabHome">
+
+                <header>
+                    <input style="width:90%;" class="radius margin align-left padding border-grey-100" type="text" id="myInput" placeholder="Write your task here...">
+                    <button onclick="newElement()" style="font-size:16px;border-radius:50px; text-align:center; color:white;" class="addBtn text-strong padding full no-border amber-800">Add</button>
+                </header>
+                <!--ToDo-list-->
+                <ul id="myUL" onclick="check()"></ul>
+            </div>
+            <!--Tab About-->
+            <div style="overflow: auto;" class="tab-content padding margin" id="tabAbout">
+                <h3>Maker of this app:</h3>
+                <h4>Mr. Tommi Ralli</h4>
+                <p>Business Information Technology Student in Laurea University of Applied Sciences</p>
+                <p>mailto: tommi.ralli@gmail.com</p>
+                <br />
+                <h4>How to use:</h4>
+                <p>In the list section, write down tasks and click "add". When you've done your task, doubleclick the task and it gets checked. You can also remove tasks from the right hand side of the task.</p>
+            </div>
+            <!--Tab buttons placed as footer-->
+        </div>
+
+    </div>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="mobileui/mobileui.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/userHandler.js"></script>
+
+</body>
+</html>
